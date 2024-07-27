@@ -1,0 +1,109 @@
+:root {
+  --header-h: calc(14pt + 2pt * 2);
+  --main-h: calc(100vh - 16pt - var(--header-h));
+  --ctrl-w: calc(14pt * 8);
+  --page-w: calc(100vw - 16pt - var(--ctrl-w));
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+  --scrollbar-bg: silver;
+  --scrollbar-thumb: slateblue
+  scrollbar-color: 
+    var(--scrollbar-thumb) var(--scrollbar-bg);
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: var(--scrollbar-bg);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: var(--scrollbar-thumb);
+}
+
+
+body {
+  font-size: 14pt;
+  font-family: serif;
+  margin: 0;
+  padding: 0;
+  line-height: 120%;
+}
+a {
+  color: darkviolet;
+}
+a:hover {
+  color: lightblue;
+  background: darkviolet;
+}
+
+#grid_container {
+  display: grid;
+  grid-template-areas:
+    "header        header"
+    "control_panel viewer";
+  grid-row-gap: 0;
+  grid-column-gap: 0;
+}
+
+#header {
+  grid-area: header;
+  background: darkblue;
+  color: lightblue;
+  height: var(--header-h);
+  margin: 0;
+  padding: 0;
+  font-size: 14pt;
+  font-family: sans-serif;
+  padding: 2pt;
+  text-align: center;
+}
+
+#control_panel {
+  grid-area: control_panel;
+  background: lightblue;
+  color: navy;
+  width: var(--ctrl-w);
+  height: var(--main-h);
+  margin: 0;
+  padding: 4pt;
+}
+#control_panel div {
+  margin-bottom: 2pt;
+  padding-bottom: 2pt;
+  border-bottom: dotted 1px royalblue;
+}
+#control_panel h2 {
+  background: royalblue;
+  color: lightblue;
+  font-size: 14pt;
+  font-family: sans-serif;
+  margin-top: 2pt;
+  margin-bottom: 2pt;
+  text-align: center;
+}
+input:invalid {
+  border: 2px solid deeppink;
+}
+
+button {
+  color: inherit;
+  background: paleturquoise;
+  font-size: inherit;
+  font-family: inherit;
+  border-radius: 0.75em;
+  border: outset 4px darkturquoise;
+  padding: 2pt;
+  margin: 2pt;
+  line-height: 100%;
+}
+
+#viewer {
+  grid-area: viewer;
+  background: silver;
+  color: dimgray;
+  width: var(--page-w);
+  height: var(--main-h);
+  margin: 0;
+  padding: 0;
+}

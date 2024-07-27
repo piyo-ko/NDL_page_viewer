@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<base target="_top">
+<link rel="stylesheet" href="page_viewer.css" type="text/css">
+<script src="page_viewer.js"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>📖 デジコレで見開き表示される本を一ページずつ表示する 📖</title>
+</head>
+<body>
+
+<div id="grid_container">
+  <h1 id="header">📖 デジコレで見開き表示される本を一ページずつ表示する 📖</h1>
+
+  <div id="control_panel">
+    <form name="in">
+      <div><a href="https://github.com/piyo-ko/NDL_page_viewer" target="_blank">簡単な説明</a></div>
+
+      <h2>初期設定</h2>
+      <div id="status">⚠️ 未設定</div>
+
+      <div>
+        <label>pid@NDL: <input name="pid" type="text" size="10" pattern="\d+" required oninput="config_modified()"></label>
+      </div>
+
+      <div>
+        <label>ページ配置:<br>
+          <input name="ref_koma_No" type="number" min="1" step="1" size="4" required oninput="config_modified()">コマ目の左側ページは<input name="ref_lhs_page_No" type="number" min="1" step="1" size="4" required oninput="config_modified()">ページ
+        </label>
+      </div>
+
+      <div>
+        <label>上余白:
+          <input name="top_margin" type="number" min="0" max="40" step="0.1" size="3" value="12" required oninput="config_modified()">%
+        </label>
+      </div>
+
+      <div>
+        <label>下余白:
+          <input name="bottom_margin" type="number" min="0" max="40" step="0.1" size="3" value="12" required oninput="config_modified()">%
+        </label>
+      </div>
+
+      <div>
+        <label>左余白:
+          <input name="left_margin" type="number" min="0" max="40" step="0.1" size="3" value="12" required oninput="config_modified()">%
+        </label>
+      </div>
+
+      <div>
+        <label>右余白:
+          <input name="right_margin" type="number" min="0" max="40" step="0.1" size="3" value="12" required oninput="config_modified()">%
+        </label>
+      </div>
+
+      <div>
+        <button type="button" onclick="config()">設定する</button>
+      </div>
+
+      <h2>閲覧</h2>
+      <div>
+        <label><input name="target_page" type="number" min="1" step="1" size="4">ページ</label>が
+        <button type="button" onclick="jump()">見たい</button>
+      </div>
+
+      <div>
+        <button type="button" onclick="prev_page()">前へ</button>
+        <button type="button" onclick="next_page()">次へ</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="viewer"><img id="page_img" src=""></div>
+
+</div>
+</body>
+</html>
