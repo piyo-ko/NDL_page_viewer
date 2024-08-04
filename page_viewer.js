@@ -144,11 +144,13 @@ function jump() {
 function prev_page() {
   PageViewer.cur_page--;
   document.getElementById('page_img').src = PageViewer.url;
+  document.in.target_page.value = PageViewer.cur_page;
 }
 
 function next_page() {
   PageViewer.cur_page++;
   document.getElementById('page_img').src = PageViewer.url;
+  document.in.target_page.value = PageViewer.cur_page;
 }
 
 function img_fitting() {
