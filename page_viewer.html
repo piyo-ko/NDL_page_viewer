@@ -55,18 +55,18 @@
       </div>
 
       <div>
-        <button type="button" onclick="config()">設定する</button>
+        <button name="btn_config" type="button" onclick="config()">設定する</button>
       </div>
 
       <h2>閲覧</h2>
       <div>
         <label><input name="target_page" type="number" min="1" step="1" size="4">ページ</label>が
-        <button type="button" onclick="jump()">見たい</button>
+        <button name="btn_jump" type="button" onclick="jump()" class="disabled">見たい</button>
       </div>
 
       <div>
-        <button type="button" onclick="prev_page()">前へ</button>
-        <button type="button" onclick="next_page()">次へ</button>
+        <button name="btn_prev_page" type="button" onclick="prev_page()" class="disabled">前へ</button>
+        <button name="btn_next_page" type="button" onclick="next_page()" class="disabled">次へ</button>
       </div>
     </form>
   </div>

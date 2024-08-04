@@ -11,11 +11,9 @@ class PageViewer {
   static left_margin = 12;
   static right_margin = 12;
   static cur_page = 0;
+  static configured = false;
   static get url() {
-    if (PageViewer.pid == '' ||
-        PageViewer.ref_koma_No == 0 ||
-        PageViewer.ref_lhs_page_No == 0 ||
-        PageViewer.cur_page == 0) {
+    if (!PageViewer.configured || PageViewer.cur_page == 0) {
       return(undefined); 
     }
 
@@ -116,41 +114,57 @@ function config() {
   PageViewer.bottom_margin = bottom_margin;
   PageViewer.left_margin = left_margin;
   PageViewer.right_margin = right_margin;
+  PageViewer.configured = true;
 
   document.getElementById('status').textContent = '✅ 設定済み';
+  document.in.btn_jump.className = '';
 
   return;
 }
 
 function config_modified() {
+  PageViewer.configured = false;
   document.getElementById('status').textContent = '⚠️ 書き換え中。設定ボタンで決定して下さい。';
+  document.in.btn_jump.className = 'disabled';
+  document.in.btn_prev_page.className = 'disabled';
+  document.in.btn_next_page.className = 'disabled';
 }
 
 function jump() {
-  if (PageViewer.pid == '' ||
-      PageViewer.ref_koma_No == 0 || PageViewer.ref_lhs_page_No == 0) {
+  if (!PageViewer.configured) {
     alert('設定を先にして下さい');
     return;
   }
   const target_page = parseInt(document.in.target_page.value);
-  if (Number.isNaN(target_page) || target_page < 1) {
+  if (!Number.isInteger(target_page) || target_page < 1) {
     alert('閲覧したいページの指定がおかしい');
+    PageViewer.cur_page = 0;
     return;
   }
   PageViewer.cur_page = target_page;
   document.getElementById('page_img').src = PageViewer.url;
+  if (1 < target_page) {
+    document.in.btn_prev_page.className = '';
+  } else {
+    document.in.btn_prev_page.className = 'disabled';
+  }
+  document.in.btn_next_page.className = '';
 }
 
 function prev_page() {
   PageViewer.cur_page--;
   document.getElementById('page_img').src = PageViewer.url;
   document.in.target_page.value = PageViewer.cur_page;
+  if (PageViewer.cur_page == 1) {
+    document.in.btn_prev_page.className = 'disabled';
+  }
 }
 
 function next_page() {
   PageViewer.cur_page++;
   document.getElementById('page_img').src = PageViewer.url;
   document.in.target_page.value = PageViewer.cur_page;
+  document.in.btn_prev_page.className = '';
 }
 
 function img_fitting() {
