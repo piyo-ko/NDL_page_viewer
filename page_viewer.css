@@ -98,11 +98,10 @@ button {
   line-height: 100%;
 }
 
-button.disabled {
+button:disabled {
   color: dimgray;
   border-color: gray;
   background: silver;
-  pointer-events: none;
 }
 
 #viewer {

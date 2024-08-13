@@ -117,7 +117,7 @@ function config() {
   PageViewer.configured = true;
 
   document.getElementById('status').textContent = '✅ 設定済み';
-  document.in.btn_jump.className = '';
+  document.in.btn_jump.disabled = false;
 
   return;
 }
@@ -125,9 +125,9 @@ function config() {
 function config_modified() {
   PageViewer.configured = false;
   document.getElementById('status').textContent = '⚠️ 書き換え中。設定ボタンで決定して下さい。';
-  document.in.btn_jump.className = 'disabled';
-  document.in.btn_prev_page.className = 'disabled';
-  document.in.btn_next_page.className = 'disabled';
+  document.in.btn_jump.disabled = true;
+  document.in.btn_prev_page.disabled = true;
+  document.in.btn_next_page.disabled = true;
 }
 
 function jump() {
@@ -144,11 +144,11 @@ function jump() {
   PageViewer.cur_page = target_page;
   document.getElementById('page_img').src = PageViewer.url;
   if (1 < target_page) {
-    document.in.btn_prev_page.className = '';
+    document.in.btn_prev_page.disabled = false;
   } else {
-    document.in.btn_prev_page.className = 'disabled';
+    document.in.btn_prev_page.disabled = true;
   }
-  document.in.btn_next_page.className = '';
+  document.in.btn_next_page.disabled = false;
 }
 
 function prev_page() {
@@ -156,7 +156,7 @@ function prev_page() {
   document.getElementById('page_img').src = PageViewer.url;
   document.in.target_page.value = PageViewer.cur_page;
   if (PageViewer.cur_page == 1) {
-    document.in.btn_prev_page.className = 'disabled';
+    document.in.btn_prev_page.disabled = true;
   }
 }
 
@@ -164,7 +164,7 @@ function next_page() {
   PageViewer.cur_page++;
   document.getElementById('page_img').src = PageViewer.url;
   document.in.target_page.value = PageViewer.cur_page;
-  document.in.btn_prev_page.className = '';
+  document.in.btn_prev_page.disabled = false;
 }
 
 function img_fitting() {
